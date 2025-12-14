@@ -18,7 +18,7 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String productName;
-    private Long price;
+    private Double price;
     private String description;
 
     @OneToMany(mappedBy = "product",cascade = CascadeType.ALL,orphanRemoval = true)
@@ -29,7 +29,7 @@ public class Product {
     private Category category;
 
 
-    public Product(String productName, Long price, String description, Category category) {
+    public Product(String productName, Double price, String description, Category category) {
         this.productName=productName;
         this.price=price;
         this.description=description;

@@ -12,9 +12,7 @@ public interface IProductService {
 
     Product addProduct(AddProductRequest product);
     void deleteProductById(Long id) throws ResourceNotFoundException;
-
     Product updateProduct(UpdateProductRequest updatedProduct, Long id) throws ResourceNotFoundException;
-
     List<Product> getAllProduct();
     Product getProductById(Long id) throws ResourceNotFoundException;
     Product getProductByName(String name) throws ResourceNotFoundException;

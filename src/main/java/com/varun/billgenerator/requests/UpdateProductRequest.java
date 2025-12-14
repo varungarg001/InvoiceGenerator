@@ -8,7 +8,7 @@ public class UpdateProductRequest {
 
     private Long id;
     private String productName;
-    private Long price;
+    private Double price;
     private String description;
     private Category category;
 
