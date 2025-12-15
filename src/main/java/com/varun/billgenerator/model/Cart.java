@@ -24,6 +24,9 @@ public class Cart {
     @JsonIgnore
     private Set<CartItem> cartItems=new HashSet<>();
 
+    @OneToOne(mappedBy = "cart")
+    private InvoiceGenerator invoice;
+
     public void addCartItem(CartItem item){
         this.cartItems.add(item);
         item.setCart(this);
