@@ -1,5 +1,6 @@
 package com.varun.billgenerator.service.product;
 
+import com.varun.billgenerator.dto.ProductDto;
 import com.varun.billgenerator.exceptions.ResourceNotFoundException;
 import com.varun.billgenerator.model.Category;
 import com.varun.billgenerator.model.Product;
@@ -8,6 +9,7 @@ import com.varun.billgenerator.repository.ProductRepo;
 import com.varun.billgenerator.requests.AddProductRequest;
 import com.varun.billgenerator.requests.UpdateProductRequest;
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,6 +23,8 @@ public class ProductService implements IProductService{
 
     private final CategoryRepo categoryRepo;
 
+    private final ModelMapper modelMapper;
+
     @Override
     public Product addProduct(AddProductRequest product) {
         Category category1 = Optional.ofNullable(categoryRepo.findByName(product.getCategory().getName())).orElseGet(() -> {
@@ -30,7 +34,7 @@ public class ProductService implements IProductService{
 
         product.setCategory(category1);
 
-        return productRepo.save(createProduct(product,category1));
+        return productRepo.save(createProduct(product, category1));
     }
 
     @Override
@@ -66,14 +70,16 @@ public class ProductService implements IProductService{
 
     @Override
     public Product getProductById(Long id) throws ResourceNotFoundException {
-        return productRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("Resource Not Found"));
+        return productRepo.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Resource Not Found"));
+
     }
 
     @Override
     public Product getProductByName(String name) throws ResourceNotFoundException {
         return productRepo.
                 findByProductName(name)
-                .orElseThrow(()->new ResourceNotFoundException("Resource Not Found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Resource Not Found"));
     }
 
     @Override
@@ -83,5 +89,10 @@ public class ProductService implements IProductService{
                .stream()
                .filter(product -> product.getCategory().getName().equals(categoryName))
                .toList();
+    }
+
+    @Override
+    public ProductDto convertToProductDto(Product product) {
+        return modelMapper.map(product, ProductDto.class);
     }
 }

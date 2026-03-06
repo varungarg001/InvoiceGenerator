@@ -2,9 +2,8 @@ package com.varun.billgenerator.controller;
 
 import com.varun.billgenerator.Response.ApiResponse;
 import com.varun.billgenerator.constants.Messages;
-import com.varun.billgenerator.model.Cart;
 import com.varun.billgenerator.model.InvoiceGenerator;
-import com.varun.billgenerator.service.InvoiceGeneratorService;
+import com.varun.billgenerator.service.invoice.InvoiceGeneratorService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -2,6 +2,7 @@ package com.varun.billgenerator.controller;
 
 import com.varun.billgenerator.Response.ApiResponse;
 import com.varun.billgenerator.constants.Messages;
+import com.varun.billgenerator.dto.ProductDto;
 import com.varun.billgenerator.exceptions.ResourceNotFoundException;
 import com.varun.billgenerator.model.Product;
 import com.varun.billgenerator.requests.AddProductRequest;

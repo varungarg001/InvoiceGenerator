@@ -1,5 +1,6 @@
 package com.varun.billgenerator.service.product;
 
+import com.varun.billgenerator.dto.ProductDto;
 import com.varun.billgenerator.exceptions.ResourceNotFoundException;
 import com.varun.billgenerator.model.Category;
 import com.varun.billgenerator.model.Product;
@@ -19,4 +20,5 @@ public interface IProductService {
     List<Product> getAllProductByCategoryName(String categoryName);
     Product createProduct(AddProductRequest request, Category category);
 
+    ProductDto convertToProductDto(Product product);
 }

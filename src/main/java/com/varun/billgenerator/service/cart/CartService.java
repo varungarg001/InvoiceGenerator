@@ -1,9 +1,11 @@
 package com.varun.billgenerator.service.cart;
 
+import com.varun.billgenerator.dto.CartDto;
 import com.varun.billgenerator.model.Cart;
 import com.varun.billgenerator.repository.CartItemRepo;
 import com.varun.billgenerator.repository.CartRepo;
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,6 +17,8 @@ public class CartService implements ICartService{
     private final CartRepo cartRepo;
 
     private final CartItemRepo cartItemRepo;
+
+    private final ModelMapper modelMapper;
 
 
     @Override
@@ -46,5 +50,10 @@ public class CartService implements ICartService{
         Cart cart=new Cart(0.0);
         cartRepo.save(cart);
         return cart;
+    }
+
+    @Override
+    public CartDto convertToCartDto(Cart cart){
+        return modelMapper.map(cart,CartDto.class);
     }
 }

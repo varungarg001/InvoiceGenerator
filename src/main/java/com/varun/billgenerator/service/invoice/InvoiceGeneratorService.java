@@ -1,4 +1,4 @@
-package com.varun.billgenerator.service;
+package com.varun.billgenerator.service.invoice;
 
 import com.varun.billgenerator.model.Cart;
 import com.varun.billgenerator.model.InvoiceGenerator;
